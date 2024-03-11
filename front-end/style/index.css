@@ -1,0 +1,81 @@
+.menu-horizontal {
+    background-color: #235D3A;
+    color: #ffffff;
+    width: 100%;
+    transition: background-color 0.5s;
+  }
+  
+  .menu-horizontal ul {
+    list-style: square;
+    padding: 0 2%;
+    margin: 0 auto;
+    display:flex;
+  }
+  
+  .menu-horizontal li {
+    margin-right: 5%;
+    text-decoration: underline;
+    color: rgb(255, 255, 255);
+    transition: background-color 0.5s;
+  }
+  
+  .menu-horizontal a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+  }
+  .menu-horizontal a:hover{
+    background-color: gold;
+    color:#000000;
+  }
+  .menu-horizontal li:hover {
+    margin-right: 5%;
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
+    background-color: gold;
+  }
+  .menu-horizontal ul:hover {
+    list-style:circle;
+    padding: 0 2%;
+    margin: 0 auto;
+    display:flex;
+    background-color: gold;
+  }
+  
+  body {
+    background-image: url("../img/img4.png");
+    background-size:cover;
+    background-repeat: no-repeat; 
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(115, 192, 136, 0.5); 
+    z-index: -1; 
+  }
+  
+  img {
+    width: 300px;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+    padding-bottom: 0%;
+  }
+  
+.contenedor{
+  background-color: #A8E0B7;
+  padding: 10px;
+  color: #000000;
+}
+
+.contenedord{
+  background-color: #73C088; 
+  padding: 10px; 
+  color: #000000; 
+}
