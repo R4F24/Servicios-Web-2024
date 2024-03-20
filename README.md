@@ -11,5 +11,5 @@ Proyecto enfocado en desarrollar una aplicacion que permita rastrear monitorear 
 
 ## Imagenes
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://drive.google.com/file/d/1lwoLw-PsfWHi1zHjo72vFMGaZfRlcNXj/view?usp=sharing)
 
