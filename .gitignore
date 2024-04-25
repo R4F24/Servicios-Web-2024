@@ -3,3 +3,6 @@ venv/
 node_modules/
 __pycache__/
 npm-debug.log
+KasaMonitoringAPI.code-workspace
+package-lock.json
+package.json
