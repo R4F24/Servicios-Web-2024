@@ -1,0 +1,5 @@
+modules/
+venv/
+node_modules/
+__pycache__/
+npm-debug.log
