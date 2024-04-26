@@ -11,7 +11,7 @@ services:
         ipv4_address: 172.0.0.3
     expose:
       - "9042"
-    restart: unless-stopped
+   
 
   db_kasa:
     container_name: db_kasa
@@ -23,7 +23,7 @@ services:
         ipv4_address: 172.0.0.4
     expose:
       - "9042"
-    restart: unless-stopped
+    
 
   db_disp:
     container_name: db_disp
@@ -35,7 +35,7 @@ services:
         ipv4_address: 172.0.0.5
     expose:
       - "9042"
-    restart: unless-stopped
+    
 
 
   front_express: 
@@ -50,7 +50,7 @@ services:
       - "9041"
     depends_on:
       - flask_app
-    restart: unless-stopped
+  
 
   flask_app: 
     container_name: flask_app
@@ -68,7 +68,7 @@ services:
       - db_kasa
       - db_kasa_temp
       - db_disp
-    restart: unless-stopped
+  
 
 networks:
   db_network: 
