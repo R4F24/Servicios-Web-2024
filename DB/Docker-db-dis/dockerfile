@@ -1,0 +1,12 @@
+FROM cassandra:latest
+
+## ENV LANG C.UTF-8
+
+COPY ./uni_dispositivos.cql /docker-entrypoint-initdb.d/
+
+##COPY entrypoint.sh /
+
+## ENTRYPOINT ["/entrypoint.sh"]d
+CMD ["cassandra", "-f"]
+
+## CMD ["cqlsh", "-f", "uni_dispositivos.cql "]

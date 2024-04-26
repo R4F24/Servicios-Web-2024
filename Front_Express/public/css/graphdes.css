@@ -1,0 +1,267 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('fondo.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    color: #FFA500; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+    letter-spacing: 2px; 
+}
+
+#lightning {
+    margin-right: 10px;
+    color: #f1666d;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 2rem; 
+}
+
+.chart-container {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    border: 4px solid transparent; 
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.8s, box-shadow 0.8s; /* Transición suave para efectos de hover */
+    background-clip: padding-box; /* Clip de fondo solo dentro del padding */
+}
+
+.chart-container:hover {
+    border-image: linear-gradient(to right, rgb(203, 155, 222), rgb(237, 140, 156)); /* Establecer un gradiente como imagen de borde */
+    border-image-slice: 1; /* Especificar cómo se dividirá la imagen de borde */
+    border-color: transparent; /* Hacer que el borde transparente para que solo se vea el gradiente */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agregar sombra en hover */
+}
+
+canvas {
+    max-width: 45%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chart-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.chart-legend-item span {
+    margin-left: 0.5rem;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+}
+
+.edificio {
+    width: 48%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.edificio h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.edificio p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.edificio {
+    border: 2px solid #ccc; 
+    border-radius: 10px; 
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.edificio:hover {
+    background-color: rgba(255, 255, 255, 1); 
+    border-color: #FFA500; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+
+.scroll-indicator {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: #020000; 
+}
+
+#arrowdown {
+    padding-top: 0px;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 150px; 
+    margin-bottom: 20px;
+}
+
+.select-wrapper select {
+    appearance: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.select-wrapper::after {
+    content: "\25BC"; /* flecha hacia abajo */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.select-wrapper:hover select {
+    border-color: #999;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.select-wrapper select option:checked {
+    background-color: #f0f0f0;
+}
+
+.content {
+    width: 60%;
+    margin-right: 20px; /* Espacio entre el contenido y los dispositivos */
+}
+
+.devices {
+    width: 30%;
+}
+
+.device {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.device h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.device p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.device {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.device:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.device h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.device p {
+    margin: 10px 0 0;
+    color: #666;
+}
+
+.date-wrapper {
+    position: relative;
+    width: 270px; 
+    margin-bottom: 20px;
+}
+
+.date-wrapper select {
+    appearance: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.date-wrapper::after {
+    /*content: "\25BC";  flecha hacia abajo */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.date-wrapper:hover select {
+    border-color: #999;
+}
+
+.date-wrapper select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.date-wrapper select option:checked {
+    background-color: #f0f0f0;
+}
+

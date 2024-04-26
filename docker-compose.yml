@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  db_kasa_temp:
+    container_name: db_kasa_temp  
+    build:
+      context: .\DB\Docker-db-disTemporal
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.3
+    expose:
+      - "9042"
+    restart: unless-stopped
+
+  db_kasa:
+    container_name: db_kasa
+    build:
+      context: .\DB\Docker-db-hist
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.4
+    expose:
+      - "9042"
+    restart: unless-stopped
+
+  db_disp:
+    container_name: db_disp
+    build:
+      context: .\DB\Docker-db-dis
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.5
+    expose:
+      - "9042"
+    restart: unless-stopped
+
+
+  front_express: 
+    container_name: front_express
+    build:
+      context: .\Front_Express
+      dockerfile: Dockerfile
+    networks:
+      app_network:
+        ipv4_address: 172.0.0.11
+    expose:
+      - "9041"
+    depends_on:
+      - flask_app
+    restart: unless-stopped
+
+  flask_app: 
+    container_name: flask_app
+    build:
+      context: .\Backend_Flask
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.2
+      app_network:
+        ipv4_address: 172.0.0.10
+    expose:
+      - "9040-9045"
+    depends_on:
+      - db_kasa
+      - db_kasa_temp
+      - db_disp
+    restart: unless-stopped
+
+networks:
+  db_network: 
+    ipam:
+      config:
+        - subnet: 172.0.0.0/29
+  app_network:
+    ipam:
+      config:
+        - subnet: 172.0.0.8/29
