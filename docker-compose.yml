@@ -4,19 +4,21 @@ services:
   db_kasa_temp:
     container_name: db_kasa_temp  
     build:
-      context: .\DB\Docker-db-disTemporal
+      context: ./DB/Docker-db-disTemporal
       dockerfile: Dockerfile
     networks:
       db_network:
         ipv4_address: 172.0.0.3
     expose:
       - "9042"
+    ports:
+      - "9042:9042"
    
 
   db_kasa:
     container_name: db_kasa
     build:
-      context: .\DB\Docker-db-hist
+      context: ./DB/Docker-db-hist
       dockerfile: Dockerfile
     networks:
       db_network:
@@ -28,7 +30,7 @@ services:
   db_disp:
     container_name: db_disp
     build:
-      context: .\DB\Docker-db-dis
+      context: ./DB/Docker-db-dis
       dockerfile: Dockerfile
     networks:
       db_network:
@@ -36,18 +38,30 @@ services:
     expose:
       - "9042"
     
-
+  db_seeder:
+    container_name: db_seeder
+    build:
+      context: db_seeder/
+    depends_on:
+      - db_kasa_temp
+    volumes:
+      - ./:/code
+    environment:
+      - CASSANDRA_HOST=database
+    entrypoint: "/code/scripts/cassandra.sh"
 
   front_express: 
     container_name: front_express
     build:
-      context: .\Front_Express
+      context: ./Front_Express
       dockerfile: Dockerfile
     networks:
       app_network:
         ipv4_address: 172.0.0.11
     expose:
       - "9041"
+    ports:
+      - "80:80"
     depends_on:
       - flask_app
   
@@ -55,19 +69,21 @@ services:
   flask_app: 
     container_name: flask_app
     build:
-      context: .\Backend_Flask
+      context: ./Backend_Flask
       dockerfile: Dockerfile
     networks:
       db_network:
-        ipv4_address: 172.0.0.2
+        ipv4_address: 172.0.0.6
       app_network:
         ipv4_address: 172.0.0.10
     expose:
-      - "9040-9045"
-    depends_on:
-      - db_kasa
-      - db_kasa_temp
-      - db_disp
+      - "5000"
+    ports:
+      - "5000:5000"
+    #depends_on:
+    #  - db_kasa
+    #  - db_kasa_temp
+    #  - db_disp
   
 
 networks:

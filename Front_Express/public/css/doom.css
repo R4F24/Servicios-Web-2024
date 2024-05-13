@@ -1,0 +1,32 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+footer {
+    position: fixed;
+    bottom: 55px;
+    height: 30px;
+    width: 100%;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,8 +1,27 @@
+////////////////
+// Graficas   //
+////////////////
 
-function updateGraph1(backend_ip, updateCount, ctx1, startDate, endDate) {
-    fetch(backend_ip)
-        .then(response => response.json())
-        .then(data => {
+// Queda en WIP
+class graph {
+    properties = {
+        name: "",
+        container: "",
+        type: "",
+        request_type: "",
+        options: ""
+    }
+
+    constructor(name, container, type, request_type, options) {
+        this.name = name;
+        this.container = container;
+        this.type = type;
+        this.request_type = request_type;
+        this.options = options;
+    }
+
+    initializeGraph() {
+        data = fetchGraphData(backend_ip, request_type, id_defaut);
             let powerByDay = {};
 
             data.forEach(entry => {
@@ -64,73 +83,20 @@ function updateGraph1(backend_ip, updateCount, ctx1, startDate, endDate) {
             }
 
             window.myChart1 = new Chart(ctx1, config);
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-        });
-}
+    }
 
-function updateGraph2(backendIp2,updateCount2,ctx2,year) {
-    fetch(backendIp2)
-        .then(response => response.json())
-        .then(data => {
-            let powerByMonth = {}; // Cambiamos powerByDay a powerByMonth
+    fetchGraphData(backend_ip, request_type, id_defaut="") {
 
-            data.forEach(entry => {
-                const date = entry.time_inserted.slice(0, 7); // Tomamos solo el año y mes (primeros 7 caracteres)
-                if (!powerByMonth[date]) {
-                    powerByMonth[date] = 0;
-                }
-                powerByMonth[date] += entry.power_mw;
+        let full_direction = backend_ip+request_type+id_defaut;
+        fetch(full_direction)
+            .then(response => response.json());
+            
+    }
 
-            });
-
-            if (year != null){
-                powerByMonth = Object.keys(powerByMonth)
-                    .filter(date => date.includes(year))
-                    .reduce((obj, date) => {
-                        obj[date] = powerByMonth[date];
-                        return obj;
-                    }, {});
-            }
-
-            const sortedPowerByMonth = Object.keys(powerByMonth).map(date => ({
-                date,
-                power: powerByMonth[date]
-            }));
-
-            const labels = sortedPowerByMonth.map(entry => entry.date);
-            const powerData = sortedPowerByMonth.map(entry => entry.power);
-
-            const chartData = {
-                labels: labels,
-                datasets: [{
-                    label: 'Energía por mes (mili-watts)', // Cambiamos el nombre del label
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)', 
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                    data: powerData
-                }]
-            };
-
-            const config = {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    animation: {
-                        duration: 0//(updateCount2 > 0) ? 0 : 1000 // Si es la segunda actualización, desactiva la animación
-                    },
-                    responsive: false
-                }
-            };
-            updateCount2++;
-            if (window.myChart2 instanceof Chart) {
-                window.myChart2.destroy();
-            }
-
-            window.myChart2 = new Chart(ctx2, config);
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-        });
+    updateGraph() {
+        //Fetch the response and graph it *Needs some fixing*
+    }
+    //function UpdateGraph(backend_ip, updateCount, container, request_type, id_defaut=""){
+    //
+    //}
 }

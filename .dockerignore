@@ -1,0 +1,11 @@
+# Ignore files and directories starting with a dot
+.*
+# Ignore node_modules directory
+node_modules/
+# Ignore log files
+*.log
+# Ignore temporary files
+*.tmp
+# Ignore app/backend directory
+App/
+Backend_Flask/  # Ignore this directory

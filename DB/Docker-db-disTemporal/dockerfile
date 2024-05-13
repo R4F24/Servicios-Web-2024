@@ -1,5 +1,6 @@
 FROM cassandra:latest
 
+EXPOSE 9042
 ## ENV LANG C.UTF-8
 
 COPY ./temporal_db.cql /docker-entrypoint-initdb.d/
