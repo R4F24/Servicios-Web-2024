@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 EXPOSE 5000
+EXPOSE 80
 #EXPOSE 9042
 
 ENV FLASK_APP=./backend/app.py
@@ -15,7 +16,6 @@ COPY ./requirements.txt .
 #WORKDIR /code
 
 RUN pip3 install -r requirements.txt
-RUN pip3 install python-kasa
 
 #ENV PATH="/usr/local/bin:${PATH}"
 

@@ -687,9 +687,6 @@ async function agregarDispositivo() {
     .catch(error => {
         console.error('Error al obtener los datos:', error);
     });
-
-    
-
 }
 
 // Once the DOM has finished loadindg start the main

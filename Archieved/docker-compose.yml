@@ -13,6 +13,43 @@ services:
       - "9042"
     ports:
       - "9042:9042"
+   
+
+  db_kasa:
+    container_name: db_kasa
+    build:
+      context: ./DB/Docker-db-hist
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.4
+    expose:
+      - "9042"
+    
+
+  db_disp:
+    container_name: db_disp
+    build:
+      context: ./DB/Docker-db-dis
+      dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.5
+    expose:
+      - "9042"
+    
+  db_seeder:
+    container_name: db_seeder
+    build:
+      context: db_seeder/
+    depends_on:
+      - db_kasa_temp
+    volumes:
+      - ./:/code
+    environment:
+      - CASSANDRA_HOST=database
+    entrypoint: "/code/scripts/cassandra.sh"
+
   front_express: 
     container_name: front_express
     build:
@@ -34,11 +71,19 @@ services:
     build:
       context: ./Backend_Flask
       dockerfile: Dockerfile
+    networks:
+      db_network:
+        ipv4_address: 172.0.0.6
+      app_network:
+        ipv4_address: 172.0.0.10
     expose:
       - "5000"
     ports:
       - "5000:5000"
-
+    #depends_on:
+    #  - db_kasa
+    #  - db_kasa_temp
+    #  - db_disp
   
 
 networks:
